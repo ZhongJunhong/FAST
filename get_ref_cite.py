@@ -1,6 +1,5 @@
 import bibtexparser # bibtexparser还有很多其他功能，后续再优化
 import re
-import crossref_commons.retrieval
 import json
 import time
 from tqdm import tqdm
