@@ -80,42 +80,7 @@ def together(all_doi_list): # 任意多个存储doi的list，放入一个大list
     
     doi_together = np.unique(doi_together) # doi去重
     print("%d articles after drop duplicated" % len(doi_together))
-    
-    # all_data = [] # 存储所有元数据
-    '''
-    for i in tqdm(doi_together):
-        # 存储每条元数据
-        meta_dict = {
-            "doi": None,
-            "title": None,
-            "author": None,
-            "affiliation": None,
-            "time": None,
-            "country": None,
-            "type": None,
-            "language": None,
-            "publication": None,
-            "abstract": None,
-            "keywords": None,
-        }
-        
-        try:
-            meta_dict['doi'] = 
-            meta_dict['title'] = 
-            meta_dict['author'] = 
-            meta_dict['affiliation'] = 
-            meta_dict['time'] = 
-            meta_dict['country'] = 
-            meta_dict['type'] = 
-            meta_dict['language'] = 
-            meta_dict['publication'] = 
-            meta_dict['abstract'] = 
-            meta_dict['keywords'] = 
-            
-            all_data.append(meta_dict)       
-        except:
-            continue    
-    '''
+
     return doi_together
     # return all_data
 
