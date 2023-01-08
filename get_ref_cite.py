@@ -7,7 +7,6 @@ import numpy as np
 from requests import get
 from bs4 import BeautifulSoup
 
-
 # 读取bibtex文件，提取doi，去重，并以list返回
 def get_doi_list_from_bib(bibpath):
     doi_list = set()
@@ -72,7 +71,7 @@ def get_cited_doi_list(doi_list):
     return cited_doi_list
 
 
-# 对所有找到的doi合起来，去重，查找元数据，逐条写入一个dictonary，最后返回一个存储所有dict的list
+# 对所有找到的doi合起来，去重，最后返回一个存储所有doi的list
 def together(all_doi_list): # 任意多个存储doi的list，放入一个大list再输入。如 list1 + list2 + list3 + ……
     doi_together = np.array(all_doi_list).tolist()
     print("%d articles before drop duplicated" % len(doi_together))
@@ -121,8 +120,6 @@ def get_ab_kw_from_doi(doi, timeout = 30):
 
     return None    
 
-doi = '10.1016/j.sigpro.2006.03.020'
-get_ab_kw_from_doi(doi)
 
 
 '''
@@ -131,6 +128,5 @@ get_ab_kw_from_doi(doi)
 %3F = ?
 %25 = %
 %3D = =
-
 https://www.sciencedirect.com/science/article/pii/S0165168406001241?via=ihub&amp;key=a03cac0d25e7e1b9e5dac0cf5cf697d999cdb98c
 '''

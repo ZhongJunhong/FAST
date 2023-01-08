@@ -92,6 +92,6 @@ def get_meta_from_bib(bibpath, save_file = 'metadata.csv'):
     
     return None
 
-get_meta_from_bib('savedrecs.bib', save_file = 'metadata.csv')
+# get_meta_from_bib('pollen.bib', save_file = 'pollen_meta.csv')
 
 
