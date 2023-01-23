@@ -8,7 +8,7 @@ from requests import get
 from bs4 import BeautifulSoup
 
 # 读取bibtex文件，提取doi，去重，并以list返回
-def get_doi_list_from_bib(bibpath):
+def getDoiFromBib(bibpath):
     doi_list = set()
     no_doi_count = 0 # 计数有多少缺失doi数据
     
@@ -28,7 +28,7 @@ def get_doi_list_from_bib(bibpath):
 
 
 # 输入一个存储doi的list，从COCI获得所有citing的doi，去重，并以list形式返回
-def get_citing_doi_list(doi_list):
+def getCitingDoi(doi_list):
     error_doi_count = 0 # 无法请求的给定doi
     citing_doi_list = set()
     
@@ -50,7 +50,7 @@ def get_citing_doi_list(doi_list):
 
 
 # 输入一个存储doi的list，获得其所有cited的doi，去重，并以list形式返回
-def get_cited_doi_list(doi_list):
+def getCitedDoi(doi_list):
     error_doi_count = 0 # 无法请求的给定doi
     cited_doi_list = set()
     
@@ -83,7 +83,7 @@ def together(all_doi_list): # 任意多个存储doi的list，放入一个大list
     # return all_data
 
 
-def get_abstract(doi_list): # 从crossref调取abstract
+def getAb(doi_list): # 从crossref调取abstract
     has_abstract_count = 0
     error_doi_count = 0
     no_abstract_key_count = 0
@@ -105,28 +105,3 @@ def get_abstract(doi_list): # 从crossref调取abstract
     print('%d articles have no abstract item' % no_abstract_key_count)
     print('%d articles can not be requests' % error_doi_count)
     return None
-
-
-# 输入一个doi，返回abstract和keywords
-def get_ab_kw_from_doi(doi, timeout = 30):
-    try:
-        content = BeautifulSoup(get('https://www.doi.org/' + doi, timeout = timeout).text, 'html.parser')
-        url_content = content.find_all('meta')[2]
-        red_url = url_content.find('content')
-        print(red_url)
-        
-    except:
-        print("Some error occured, please check the input and internet again.")
-
-    return None    
-
-
-
-'''
-%2F = /
-%3A = :
-%3F = ?
-%25 = %
-%3D = =
-https://www.sciencedirect.com/science/article/pii/S0165168406001241?via=ihub&amp;key=a03cac0d25e7e1b9e5dac0cf5cf697d999cdb98c
-'''
