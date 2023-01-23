@@ -1,4 +1,4 @@
-import bibtexparser # bibtexparser还有很多其他功能，后续再优化
+import bibtexparser
 import re
 import json
 import time
