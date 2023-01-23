@@ -1,18 +1,16 @@
-import bibtexparser # bibtexparser还有很多其他功能，后续再优化
+import bibtexparser
 import csv
 import re
 from tqdm import tqdm
-import numpy as np
-import pandas as pd
 
 
 # 读取bibtex文件，清洗数据，存入metadata.csv
-def get_meta_from_bib(bibpath, save_file = 'metadata.csv'):
+def readFromBib(bibpath, save_file = 'metadata.csv'):
     with open(bibpath) as bib_file:
         bib_data = bibtexparser.load(bib_file).entries
     bib_file.close()
 
-    with open(save_file, 'w') as file: # 创建csv表，写好表头
+    with open(save_file, 'w') as file:
         writer = csv.writer(file)
         writer.writerow(['doi', 'title', 'author', 'affiliations', 'abstract', 'keywords', 'journal', 'year', 'month', 'type', 'language', 'categories'])
     file.close()
@@ -92,6 +90,25 @@ def get_meta_from_bib(bibpath, save_file = 'metadata.csv'):
     
     return None
 
-# get_meta_from_bib('pollen.bib', save_file = 'pollen_meta.csv')
 
+'''
+# 读取bibtex文件，提取doi，去重，并以list返回
+def getDoiFromBib(bibpath):
+    doi_list = set()
+    no_doi_count = 0 # 计数有多少缺失doi数据
+    
+    with open(bibpath) as bib_file:
+        bib_data = bibtexparser.load(bib_file)
+        bib_data = bib_data.entries
+    
+    for i in bib_data:
+        if 'doi' in i:
+            doi_list.add(i['doi'])                    
+        else:
+            no_doi_count = no_doi_count + 1
+    
+    doi_list = list(doi_list)
+    print("%d given articles have no doi" % no_doi_count)
+    return doi_list
+'''
 
