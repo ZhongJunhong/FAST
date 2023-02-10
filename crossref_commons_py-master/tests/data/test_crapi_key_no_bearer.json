@@ -1,0 +1,5 @@
+{
+    "Crossref-Plus-API-Token": "auth-key",
+    "User-Agent": "tests; mailto:me@org.org",
+    "Mailto": "me@org.org"
+}
